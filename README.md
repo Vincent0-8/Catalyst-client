@@ -1,18 +1,21 @@
-# 🛒 Catalyst — Modern E-Commerce Frontend
+# Catalyst — Modern E-Commerce Frontend
 
-> Fullstack E-Commerce Client Application built with **React 19**, **Redux Toolkit**, and **Tailwind CSS**. Inspired by high-end minimalist boutique marketplaces ([Garmentory](https://www.garmentory.com/)).
+> **Tech Stack:** `React 19` • `Redux Toolkit` • `Tailwind CSS v4` • `Axios` • `Lodash` • `React Toastify`  
+> **Backend API Repository:** [Catalyst-server](https://github.com/Vincent0-8/Catalyst-server)
+
+Fullstack E-Commerce Client Application built with **React 19**, **Redux Toolkit**, and **Tailwind CSS v4**. Paired with the RESTful API backend at [Catalyst-server](https://github.com/Vincent0-8/Catalyst-server). Inspired by high-end minimalist boutique marketplaces ([Garmentory](https://www.garmentory.com/)).
 
 ---
 
 ## 🌟 Key Features
 
-- **🛍️ Minimalist Luxury Aesthetics**: Curated typography, custom color palette (`charcoal`, `off-white`, `wine accent`), and smooth scroll animations via AOS.
-- **🔍 Real-Time Product Catalog**: Category filtering (*Outerwear*, *Tops*, *Bottoms*, *Accessories*) and real-time debounced product search.
-- **🔐 Complete Auth Integration**: User registration, login with *Remember Me* storage logic, and client-side password length validation.
-- **🛒 Persistent Cart & Wishlist**: Syncs state with Redux Toolkit and `localStorage` / `sessionStorage` isolated per user session.
-- **🛡️ Route Protection**: Guarded access for Checkout, Order History, and Wishlist using custom `<ProtectedRoute>`.
-- **⚡ Auto-Logout Interceptor**: Axios response interceptor that automatically purges invalid/expired JWT tokens (401 Unauthorized).
-- **📱 Ultra-Responsive Layout**: Custom breakpoint handling for Seamless Mobile, Tablet (iPad), and Desktop viewports.
+- ** Minimalist Luxury Aesthetics**: Curated typography, custom color palette (`charcoal`, `off-white`, `wine accent`), and smooth scroll animations via AOS.
+- ** Real-Time Product Catalog**: Category filtering (*Outerwear*, *Tops*, *Bottoms*, *Accessories*) and real-time debounced product search.
+- ** Complete Auth Integration**: User registration, login with *Remember Me* storage logic, and client-side password length validation.
+- ** Persistent Cart & Wishlist**: Syncs state with Redux Toolkit and `localStorage` / `sessionStorage` isolated per user session.
+- ** Route Protection**: Guarded access for Checkout, Order History, and Wishlist using custom `<ProtectedRoute>`.
+- ** Auto-Logout Interceptor**: Axios response interceptor that automatically purges invalid/expired JWT tokens (401 Unauthorized).
+- ** Ultra-Responsive Layout**: Custom breakpoint handling for Seamless Mobile, Tablet (iPad), and Desktop viewports.
 
 ---
 
@@ -58,7 +61,7 @@ marketplace-client/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js `v18+`

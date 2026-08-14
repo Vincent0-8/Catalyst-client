@@ -7,7 +7,7 @@ Fullstack E-Commerce Client Application built with **React 19**, **Redux Toolkit
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
 - ** Minimalist Luxury Aesthetics**: Curated typography, custom color palette (`charcoal`, `off-white`, `wine accent`), and smooth scroll animations via AOS.
 - ** Real-Time Product Catalog**: Category filtering (*Outerwear*, *Tops*, *Bottoms*, *Accessories*) and real-time debounced product search.
@@ -19,7 +19,7 @@ Fullstack E-Commerce Client Application built with **React 19**, **Redux Toolkit
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 marketplace-client/

@@ -9,13 +9,13 @@ Fullstack E-Commerce Client Application built with **React 19**, **Redux Toolkit
 
 ## Key Features
 
-- ** Minimalist Luxury Aesthetics**: Curated typography, custom color palette (`charcoal`, `off-white`, `wine accent`), and smooth scroll animations via AOS.
-- ** Real-Time Product Catalog**: Category filtering (*Outerwear*, *Tops*, *Bottoms*, *Accessories*) and real-time debounced product search.
-- ** Complete Auth Integration**: User registration, login with *Remember Me* storage logic, and client-side password length validation.
-- ** Persistent Cart & Wishlist**: Syncs state with Redux Toolkit and `localStorage` / `sessionStorage` isolated per user session.
-- ** Route Protection**: Guarded access for Checkout, Order History, and Wishlist using custom `<ProtectedRoute>`.
-- ** Auto-Logout Interceptor**: Axios response interceptor that automatically purges invalid/expired JWT tokens (401 Unauthorized).
-- ** Ultra-Responsive Layout**: Custom breakpoint handling for Seamless Mobile, Tablet (iPad), and Desktop viewports.
+- Minimalist Luxury Aesthetics: Curated typography, custom color palette (`charcoal`, `off-white`, `wine accent`), and smooth scroll animations via AOS.
+- Live Product Catalog: Category filtering and debounced product search.
+- Complete Auth Integration: User registration, login with *Remember Me* storage logic, and client-side password length validation.
+- Persistent Cart & Wishlist: Syncs state with Redux Toolkit and `localStorage` / `sessionStorage` isolated per user session.
+- Route Protection: Guarded access for Checkout, Order History, and Wishlist using custom `<ProtectedRoute>`.
+- Auto-Logout Interceptor: Axios response interceptor that automatically purges invalid/expired JWT tokens (401 Unauthorized).
+- Responsive Layout: Custom breakpoint handling for Seamless Mobile, Tablet (iPad), and Desktop viewports.
 
 ---
 

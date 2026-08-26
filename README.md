@@ -10,12 +10,13 @@ Fullstack E-Commerce Client Application built with **React 19**, **Redux Toolkit
 ## Key Features
 
 - Minimalist Luxury Aesthetics: Curated typography, custom color palette (`charcoal`, `off-white`, `wine accent`), and smooth scroll animations via AOS.
-- Live Product Catalog: Category filtering and debounced product search.
-- Complete Auth Integration: User registration, login with *Remember Me* storage logic, and client-side password length validation.
-- Persistent Cart & Wishlist: Syncs state with Redux Toolkit and `localStorage` / `sessionStorage` isolated per user session.
-- Route Protection: Guarded access for Checkout, Order History, and Wishlist using custom `<ProtectedRoute>`.
+- Live Product Catalog: Category filtering, debounced search, and shimmer skeleton loading states (`animate-pulse`).
+- Refined Auth Experience: Luxury card layout for login & register, *Remember Me* session persistence, and Chrome autofill aesthetic protection.
+- Persistent Cart & Wishlist: State synchronization with Redux Toolkit and storage isolation per user session.
+- Route Protection & Alerts: Guarded access for Checkout, Order History, and Wishlist with informative toast redirects for guest users.
+- Cross-Browser Scroll Restoration: Automatic scroll resets on route navigation and category filtering across mobile Safari and desktop browsers.
 - Auto-Logout Interceptor: Axios response interceptor that automatically purges invalid/expired JWT tokens (401 Unauthorized).
-- Responsive Layout: Custom breakpoint handling for Seamless Mobile, Tablet (iPad), and Desktop viewports.
+- Responsive 3-Column Layout: Balanced CSS grid navigation and container constraints (`max-w`) tailored for mobile, tablet (iPad), and 4K desktop screens.
 
 ---
 

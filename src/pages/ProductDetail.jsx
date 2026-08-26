@@ -22,7 +22,20 @@ const ProductDetail = () => {
     dispatch(getProductById(id));
   }, [dispatch, id]);
 
-  if (loading || !selectedProduct) return <p className="px-8 py-10">Loading...</p>;
+  if (loading || !selectedProduct) {
+    return (
+      <div className="max-w-5xl mx-auto px-6 md:px-8 py-10 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start animate-pulse">
+        <div className="aspect-3/4 bg-primary/10 rounded-xs w-full" />
+        <div className="space-y-4 text-left">
+          <div className="h-8 bg-primary/10 w-3/4 rounded-xs" />
+          <div className="h-4 bg-primary/10 w-1/4 rounded-xs" />
+          <div className="h-6 bg-primary/10 w-1/5 rounded-xs" />
+          <div className="h-16 bg-primary/10 w-full rounded-xs" />
+          <div className="h-10 bg-primary/10 w-full rounded-xs mt-6" />
+        </div>
+      </div>
+    );
+  }
 
   // to count how many quantity the product and size existed in the cart
   const alreadyInCart = cartItems
@@ -68,31 +81,35 @@ const ProductDetail = () => {
   const isWishlisted = wishlistItems.some((item) => item._id === selectedProduct._id);
 
   return (
-    <div className="px-8 py-10 grid grid-cols-1 md:grid-cols-2 gap-10">
-      <div className="h-64 md:h-auto md:aspect-[3/4] bg-secondary overflow-hidden mx-auto max-w-xs md:max-w-none">
-  <img
-    src={selectedProduct.image}
-    alt={selectedProduct.name}
-    className="w-full h-full object-cover"
-  />
-</div>
+    <div className="max-w-5xl mx-auto px-6 md:px-8 py-10 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start text-left">
+      {/* Product Image */}
+      <div className="aspect-3/4 bg-secondary overflow-hidden rounded-xs w-full shadow-xs">
+        <img
+          src={selectedProduct.image}
+          alt={selectedProduct.name}
+          className="w-full h-full object-cover"
+        />
+      </div>
 
-      <div>
-        <h1 className="font-serif text-3xl text-primary">{selectedProduct.name}</h1>
-        <p className="font-sans text-sm text-primary/60 mt-1">{selectedProduct.category}</p>
-        <p className="font-sans text-xl text-primary mt-4">${selectedProduct.price}</p>
-        <p className="font-sans text-sm text-primary/80 mt-4">{selectedProduct.description}</p>
+      {/* Product Details */}
+      <div className="flex flex-col justify-start">
+        <h1 className="font-serif text-3xl md:text-4xl text-primary font-medium">{selectedProduct.name}</h1>
+        <p className="font-sans text-xs uppercase tracking-widest text-primary/60 mt-2">{selectedProduct.category}</p>
+        <p className="font-sans text-2xl text-primary mt-4 font-semibold">${selectedProduct.price}</p>
+        <p className="font-sans text-sm text-primary/75 mt-4 leading-relaxed">{selectedProduct.description}</p>
 
         {selectedProduct.sizes.length > 0 && (
           <div className="mt-6">
-            <p className="font-sans text-sm text-primary mb-2">Size</p>
-            <div className="flex gap-2 justify-center">
+            <p className="font-sans text-xs uppercase tracking-wider text-primary/70 mb-2 font-medium">Select Size</p>
+            <div className="flex gap-2 justify-start flex-wrap">
               {selectedProduct.sizes.map((size) => (
                 <button
                   key={size}
                   onClick={() => setSelectedSize(size)}
-                  className={`border px-4 py-2 text-sm cursor-pointer ${
-                    selectedSize === size ? 'border-accent text-accent' : 'border-primary/20 text-primary'
+                  className={`border px-4 py-2 text-xs font-sans uppercase tracking-wider cursor-pointer transition-colors rounded-xs ${
+                    selectedSize === size 
+                      ? 'border-accent bg-accent/5 text-accent font-semibold' 
+                      : 'border-primary/20 text-primary hover:border-primary/50'
                   }`}
                 >
                   {size}
@@ -104,20 +121,20 @@ const ProductDetail = () => {
 
         {/* quantity feature */}
         <div className="mt-6 flex items-center gap-4">
-          <p className="font-sans text-sm text-primary">Quantity</p>
-          <div className="flex items-center border border-primary/20">
+          <p className="font-sans text-xs uppercase tracking-wider text-primary/70 font-medium">Quantity</p>
+          <div className="flex items-center border border-primary/20 rounded-xs">
             <button
               onClick={() => setQuantity((q) => Math.max(1, q - 1))}
               disabled={quantity <= 1}
-              className="px-3 py-1 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+              className="px-3 py-1 cursor-pointer text-sm disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/5 transition-colors"
             >
               -
             </button>
-            <span className="px-4">{quantity}</span>
+            <span className="px-4 text-xs font-medium">{quantity}</span>
             <button
               onClick={() => setQuantity((q) => Math.min(availableStock, q + 1))}
               disabled={quantity >= availableStock}
-              className="px-3 py-1 cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+              className="px-3 py-1 cursor-pointer text-sm disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/5 transition-colors"
             >
               +
             </button>
@@ -125,23 +142,25 @@ const ProductDetail = () => {
         </div>
 
         {/* stock detail feature */}
-        <p className="font-sans text-xs text-primary/60 mt-2">{selectedProduct.stock} in stock {alreadyInCart > 0 && ` (${alreadyInCart} already in your cart)`}</p>
+        <p className="font-sans text-xs text-primary/60 mt-2.5">
+          {selectedProduct.stock} in stock {alreadyInCart > 0 && ` (${alreadyInCart} already in your cart)`}
+        </p>
 
-        {/* conditional - alert stock feature */}
+        {/* Action Buttons */}
         <button
           onClick={handleAddToCart}
           disabled={availableStock <= 0}
-          className="mt-6 w-full bg-primary text-secondary py-3 font-sans text-sm hover:bg-accent cursor-pointer transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-primary"
+          className="mt-6 w-full bg-primary text-secondary py-3.5 font-sans text-xs uppercase tracking-widest font-medium hover:bg-accent cursor-pointer transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-primary rounded-xs"
         >
           {availableStock <= 0 ? 'Out of Stock' : 'Add to Cart'}
         </button>
 
         <button
           onClick={handleToggleWishlist}
-          className={`mt-2 w-full py-3 font-sans text-sm border cursor-pointer transition-colors ${
+          className={`mt-2 w-full py-3 font-sans text-xs uppercase tracking-widest font-medium border cursor-pointer transition-colors rounded-xs ${
             isWishlisted
-              ? 'border-accent text-accent hover:bg-accent hover:text-secondary'
-              : 'border-primary/30 text-primary/70 hover:border-accent hover:text-accent'
+              ? 'border-accent text-accent bg-accent/5 hover:bg-accent hover:text-secondary'
+              : 'border-primary/20 text-primary/80 hover:border-accent hover:text-accent'
           }`}
         >
           {isWishlisted ? '♥ Saved to Wishlist' : '♡ Add to Wishlist'}

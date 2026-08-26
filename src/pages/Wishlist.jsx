@@ -15,8 +15,8 @@ const Wishlist = () => {
   }
 
   return (
-    <div className="px-8 py-10">
-      <h1 className="font-serif text-3xl text-primary mb-8">Wishlist</h1>
+    <div className="max-w-7xl mx-auto px-6 md:px-8 py-10 w-full" data-aos="fade-up">
+      <h1 className="font-serif text-3xl text-primary mb-8 text-left">Wishlist</h1>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
         {items.map((product) => (
           <ProductCard key={product._id} product={product} />

@@ -99,7 +99,7 @@ const Home = () => {
       )}
 
       {/* Product Grid / Loading / Error / Empty State */}
-      <div className="px-8 py-8 pb-16">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 py-8 pb-16 w-full">
         {!isFiltering && (
           <div className="text-center mb-10">
             <h2 className="font-serif text-2xl text-primary font-medium tracking-wide">Featured Collection</h2>

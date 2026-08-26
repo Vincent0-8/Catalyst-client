@@ -41,7 +41,7 @@ const Home = () => {
       {!isFiltering && (
         <div
           className="relative bg-cover bg-center min-h-[70vh] flex items-center justify-center px-8 text-center"
-          style={{ backgroundImage: `url(/hero-unsplash.jpg)` }}
+          style={{ backgroundImage: `url(/hero-unsplash.webp)` }}
         >
           <div className="absolute inset-0 bg-secondary/70" />
           <div className="relative">

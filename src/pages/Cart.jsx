@@ -35,7 +35,7 @@ const Cart = () => {
         <div className="px-8 py-10 max-w-4xl mx-auto">
             <h1 className="font-serif text-3xl text-primary mb-8">Your Cart</h1>
 
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-6" data-aos="fade-left">
                 
                 {items.map((item) => (
                     <div key={`${item.product._id}-${item.size}`} className="flex gap-4 border-b border-primary/10 pb-6">
@@ -44,10 +44,10 @@ const Cart = () => {
                         </div>
 
                         <div className="flex-1 flex flex-col sm:flex-row justify-between items-start gap-2">
-                            <div>
-                                <p className="font-sans text-sm text-primary font-medium">{item.product.name}</p>
-                                <p className="font-sans text-xs text-primary/60 mt-1">Size: {item.size}</p>
-                                <p className="font-sans text-sm text-primary mt-1">${item.product.price}</p>
+                            <div className="text-left">
+                                <p className="font-sans text-md text-primary font-medium">{item.product.name}</p>
+                                <p className="font-sans text-sm text-primary/60 mt-1">Size: {item.size}</p>
+                                <p className="font-sans text-sm text-primary mt-1">Price: ${item.product.price}</p>
 
                                 <div className="flex items-center gap-3 mt-3">
                                     <div className="flex items-center border border-primary/20">

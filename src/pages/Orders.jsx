@@ -24,12 +24,12 @@ const Orders = () => {
   }
 
   return (
-    <div className="px-8 py-10 max-w-3xl mx-auto">
+    <div className="px-8 py-10 max-w-3xl mx-auto" data-aos="fade-up">
       <h1 className="font-serif text-3xl text-primary mb-8">Your Orders</h1>
 
       <div className="flex flex-col gap-6">
         {orders.map((order) => (
-          <div key={order._id} className="border border-primary/10 p-5">
+          <div key={order._id} className="border border-primary/10 p-5" data-aos="fade-up" data-aos-delay={100}>
             <div className="flex justify-between items-start mb-3">
               <div>
                 <p className="font-sans text-xs text-primary/60">Order #{order._id.slice(-8)}</p>

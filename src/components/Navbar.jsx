@@ -219,7 +219,7 @@ const Navbar = () => {
             </button>
             <button
               onClick={handleMobileCartClick}
-              className="text-xs uppercase tracking-wider hover:text-accent transition-colors cursor-pointer text-left"
+              className="text-xs uppercase tracking-wider hover:text-accent transition-colors cursor-pointer"
             >
               Cart ({totalQuantity})
             </button>

@@ -5,6 +5,7 @@ import { logout } from '../redux/slices/authSlice';
 import { loadCart, removeFromCart, clearCart } from '../redux/slices/cartSlice';
 import { Menu, X } from 'lucide-react';
 import { loadWishlist, clearWishlist } from '../redux/slices/wishlistSlice';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
   const [showCart, setShowCart] = useState(false);
@@ -28,6 +29,7 @@ const Navbar = () => {
     dispatch(loadWishlist());
     navigate('/');
     setShowMobileMenu(false);
+    setShowCart(false);
   };
 
   const handleRemove = (productId, size) => {
@@ -36,17 +38,40 @@ const Navbar = () => {
 
   const { items: wishlistItems } = useSelector((state) => state.wishlist);
 
+  const handleCartClick = () => {
+    if (!user) {
+      toast.error('Please login to unlock Cart');
+      navigate('/login');
+      setShowMobileMenu(false);
+      return;
+    }
+    setShowCart(!showCart);
+  };
+
+  const handleWishlistClick = (e) => {
+    e.preventDefault();
+    if (!user) {
+      toast.error('Please login to unlock Wishlist Products');
+      navigate('/login');
+      setShowMobileMenu(false);
+      return;
+    }
+    navigate('/wishlist');
+    setShowMobileMenu(false);
+  };
+
   return (
     <nav className="bg-secondary border-b border-primary/10 sticky top-0 z-40">
       {/* Main bar */}
-      <div className="relative flex items-center justify-between px-8 py-5">
+      <div className="relative flex items-center justify-between px-8 py-5 xl:grid xl:grid-cols-[1fr_auto_1fr]">
+        
         {/* Logo */}
-        <Link to="/" className="font-serif text-2xl font-semibold text-accent hover:opacity-90 transition-opacity">
+        <Link to="/" className="font-serif text-2xl font-semibold text-accent hover:opacity-90 transition-opacity xl:justify-self-start">
           Catalyst
         </Link>
 
-        {/* Category Navigation — desktop only (lg screens and up) */}
-        <div className="hidden lg:flex gap-6 xl:gap-10 font-sans text-xs uppercase tracking-widest text-primary/80">
+        {/* Category Navigation — desktop only, truly centered */}
+        <div className="hidden xl:flex justify-center gap-5 2xl:gap-8 font-sans text-xs uppercase tracking-widest text-primary/80">
           {['Outerwear', 'Tops', 'Bottoms', 'Accessories'].map((cat) => (
             <span
               key={cat}
@@ -59,15 +84,18 @@ const Navbar = () => {
         </div>
 
         {/* Right Menu — desktop only (lg screens and up) */}
-        <div className="hidden lg:flex items-center gap-4 xl:gap-6 text-primary font-sans text-sm">
-          <Link to="/wishlist" className="cursor-pointer text-xs uppercase tracking-wider hover:text-accent transition-colors whitespace-nowrap">
+        <div className="hidden xl:flex items-center justify-end gap-4 2xl:gap-6 text-primary font-sans text-sm xl:justify-self-end">
+          <button
+            onClick={handleWishlistClick}
+            className="cursor-pointer text-xs uppercase tracking-wider hover:text-accent transition-colors whitespace-nowrap"
+          >
             Wishlist ({wishlistItems.length})
-          </Link>
+          </button>
 
           {/* Cart Dropdown */}
           <div className="relative">
             <button
-              onClick={() => setShowCart(!showCart)}
+              onClick={handleCartClick}
               className="cursor-pointer text-xs uppercase tracking-wider hover:text-accent transition-colors flex items-center gap-1 whitespace-nowrap"
             >
               Cart ({totalQuantity})
@@ -84,7 +112,7 @@ const Navbar = () => {
                         <div key={`${item.product._id}-${item.size}`} className="flex justify-between items-start text-xs border-b border-primary/5 pb-2">
                           <div>
                             <p className="text-primary font-medium">{item.product.name}</p>
-                            <p className="text-primary/60 mt-0.5">Size: {item.size} × {item.quantity}</p>
+                            <p className="text-primary/60 mt-0.5 text-left">Size: {item.size} x {item.quantity}</p>
                           </div>
                           <div className="flex items-center gap-2">
                             <p className="text-primary font-semibold">${(item.product.price * item.quantity).toFixed(2)}</p>
@@ -137,7 +165,7 @@ const Navbar = () => {
 
         {/* Hamburger button — tablet & mobile only */}
         <button
-          className="lg:hidden flex p-1 cursor-pointer text-primary"
+          className="xl:hidden flex p-1 cursor-pointer text-primary"
           onClick={() => setShowMobileMenu(!showMobileMenu)}
           aria-label="Toggle menu"
         >
@@ -147,8 +175,8 @@ const Navbar = () => {
 
       {/* Mobile dropdown menu — tablet & mobile */}
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out font-sans text-sm text-primary bg-secondary ${
-          showMobileMenu ? 'max-h-[500px] border-t border-primary/10' : 'max-h-0'
+        className={`xl:hidden overflow-hidden transition-all duration-300 ease-in-out font-sans text-sm text-primary bg-secondary ${
+          showMobileMenu ? 'max-h-125 border-t border-primary/10' : 'max-h-0'
         }`}
       >
         <div className="px-8 py-6 flex flex-col gap-5">
@@ -172,12 +200,18 @@ const Navbar = () => {
           {/* Wishlist & Cart */}
           <div className="flex flex-col gap-3">
             <p className="text-[10px] uppercase tracking-widest text-primary/40 font-medium">Bag</p>
-            <Link to="/wishlist" onClick={() => setShowMobileMenu(false)} className="text-xs uppercase tracking-wider hover:text-accent transition-colors">
+            <button
+              onClick={handleWishlistClick}
+              className="text-xs uppercase tracking-wider hover:text-accent transition-colors cursor-pointer"
+            >
               Wishlist ({wishlistItems.length})
-            </Link>
-            <Link to="/cart" onClick={() => setShowMobileMenu(false)} className="text-xs uppercase tracking-wider hover:text-accent transition-colors">
+            </button>
+            <button
+              onClick={handleCartClick}
+              className="text-xs uppercase tracking-wider hover:text-accent transition-colors cursor-pointer"
+            >
               Cart ({totalQuantity})
-            </Link>
+            </button>
           </div>
 
           <div className="border-t border-primary/10" />

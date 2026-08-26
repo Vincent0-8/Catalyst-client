@@ -34,11 +34,6 @@ const Home = () => {
 
   const isFiltering = Boolean(category || search);
 
-  if (loading) return <p className="px-8 py-10">Loading...</p>;
-  if (error) {
-    const errorMsg = typeof error === 'string' ? error : error.message || 'Failed to load products';
-    return <p className="px-8 py-10 text-red-500">Error: {errorMsg}</p>;
-  }
 
   return (
     <div>
@@ -103,7 +98,7 @@ const Home = () => {
         </div>
       )}
 
-      {/* Product Grid / Empty State */}
+      {/* Product Grid / Loading / Error / Empty State */}
       <div className="px-8 py-8 pb-16">
         {!isFiltering && (
           <div className="text-center mb-10">
@@ -111,7 +106,38 @@ const Home = () => {
             <div className="w-12 h-0.5 bg-accent/40 mx-auto mt-2" />
           </div>
         )}
-        {items.length === 0 ? (
+
+        {loading ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="animate-pulse">
+                {/* Image Skeleton */}
+                <div className="aspect-3/4 bg-primary/10 rounded-xs mb-3" />
+                {/* Text Skeleton */}
+                <div className="flex justify-between items-start gap-2">
+                  <div className="flex-1 space-y-2">
+                    <div className="h-3.5 bg-primary/10 rounded-xs w-3/4" />
+                    <div className="h-2.5 bg-primary/10 rounded-xs w-1/2" />
+                  </div>
+                  <div className="h-3.5 bg-primary/10 rounded-xs w-8" />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : error ? (
+          <div className="py-20 text-center">
+            <p className="font-serif text-2xl text-primary mb-2">Unable to connect</p>
+            <p className="font-sans text-sm text-primary/60 mb-6">
+              {typeof error === 'string' ? error : error?.message || 'The boutique server is currently unavailable.'}
+            </p>
+            <button
+              onClick={() => dispatch(getProducts({ category, search }))}
+              className="bg-primary text-secondary px-6 py-2 text-xs uppercase tracking-wider hover:bg-accent transition-colors cursor-pointer"
+            >
+              Try Again
+            </button>
+          </div>
+        ) : items.length === 0 ? (
           <div className="py-20 text-center">
             <p className="font-serif text-2xl text-primary mb-2">No products found</p>
             <p className="font-sans text-sm text-primary/60 mb-6">

@@ -35,58 +35,77 @@ const Login = () => {
     };
 
     return (
-        <div className="max-w-md mx-auto px-8 py-16">
-            <h1 className='font-serif text-3xl text-primary mb-8'>Login</h1>
-            <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-                
-                <input 
-                    type='email'
-                    name='email'
-                    placeholder='Email'
-                    value={formData.email}
-                    onChange={handleChange}
-                    className='border border-primary/20 px-4 py-2 font-sans text-sm'
-                    required
-                />
-                <input 
-                    type='password'
-                    name='password'
-                    placeholder='Password'
-                    value={formData.password}
-                    onChange={handleChange}
-                    className='border border-primary/20 px-4 py-2 font-sans text-sm'
-                    required
-                />
-
-                <div className='my-4 flex items-center flex-row gap-2 justify-between'>
-                    <label className="flex gap-2 text-sm text-primary">
-                        <input
-                            type="checkbox"
-                            name="rememberMe"
-                            checked={formData.rememberMe}
-                            onChange={handleChange}
-                        />
-                        Remember me
-                    </label>
-                    
-                    <p className="text-sm text-primary/70 text-center">
-                        Don't have an account? <Link to="/register" className="text-accent hover:underline">Register</Link>
-                    </p>
+        <div className="min-h-[75vh] flex items-center justify-center px-4 py-12">
+            <div className="w-full max-w-md bg-secondary/90 border border-primary/10 shadow-sm p-8 md:p-10 rounded-xs text-left" data-aos="fade-up">
+                <div className="text-center mb-8">
+                    <p className="font-sans text-[11px] uppercase tracking-widest text-primary/50 mb-2 font-medium">Member Access</p>
+                    <h1 className='font-serif text-3xl text-primary font-medium'>Sign In</h1>
+                    <div className="w-8 h-0.5 bg-accent/40 mx-auto mt-3" />
                 </div>
 
-                {error && <p className='text-red-500 text-sm'>{error}</p>}
-                <button
-                    type='submit'
-                    disabled={loading}
-                    className='bg-primary text-secondary py-2 font-sans text-sm hover:bg-accent transition-colors cursor-pointer'
-                >
-                    {loading ? 'Logging in...' : 'Login'}
+                <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
+                    <div>
+                        <label className="block text-[11px] uppercase tracking-wider text-primary/70 mb-1.5 font-medium">
+                            Email Address
+                        </label>
+                        <input 
+                            type='email'
+                            name='email'
+                            placeholder='name@example.com'
+                            value={formData.email}
+                            onChange={handleChange}
+                            className='w-full bg-secondary border border-primary/20 px-4 py-2.5 font-sans text-sm text-primary focus:outline-none focus:border-accent transition-colors rounded-xs'
+                            required
+                        />
+                    </div>
 
-                </button>
+                    <div>
+                        <label className="block text-[11px] uppercase tracking-wider text-primary/70 mb-1.5 font-medium">
+                            Password
+                        </label>
+                        <input 
+                            type='password'
+                            name='password'
+                            placeholder='••••••••'
+                            value={formData.password}
+                            onChange={handleChange}
+                            className='w-full bg-secondary border border-primary/20 px-4 py-2.5 font-sans text-sm text-primary focus:outline-none focus:border-accent transition-colors rounded-xs'
+                            required
+                        />
+                    </div>
 
-                
-                
-            </form>
+                    <div className='my-1 flex items-center flex-row gap-2 justify-between text-xs'>
+                        <label className="flex items-center gap-2 text-primary/80 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                name="rememberMe"
+                                checked={formData.rememberMe}
+                                onChange={handleChange}
+                                className="accent-accent"
+                            />
+                            Remember me
+                        </label>
+                        
+                        <Link to="/register" className="text-accent hover:underline text-xs">
+                            Create account
+                        </Link>
+                    </div>
+
+                    {error && (
+                        <p className='text-accent bg-accent/5 border border-accent/20 px-3 py-2 text-xs text-center rounded-xs'>
+                            {error}
+                        </p>
+                    )}
+
+                    <button
+                        type='submit'
+                        disabled={loading}
+                        className='mt-2 bg-primary text-secondary py-3 font-sans text-xs uppercase tracking-widest font-medium hover:bg-accent transition-colors cursor-pointer disabled:opacity-50'
+                    >
+                        {loading ? 'Signing in...' : 'Sign In'}
+                    </button>
+                </form>
+            </div>
         </div>
     )
 }

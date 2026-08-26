@@ -81,9 +81,9 @@ const ProductDetail = () => {
   const isWishlisted = wishlistItems.some((item) => item._id === selectedProduct._id);
 
   return (
-    <div className="max-w-5xl mx-auto px-6 md:px-8 py-10 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start text-left">
+    <div className="max-w-5xl mx-auto px-6 md:px-8 py-10 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start text-center md:text-left">
       {/* Product Image */}
-      <div className="aspect-3/4 bg-secondary overflow-hidden rounded-xs w-full shadow-xs">
+      <div className="aspect-3/4 bg-secondary overflow-hidden rounded-xs w-full shadow-xs mx-auto max-w-sm md:max-w-none">
         <img
           src={selectedProduct.image}
           alt={selectedProduct.name}
@@ -101,7 +101,7 @@ const ProductDetail = () => {
         {selectedProduct.sizes.length > 0 && (
           <div className="mt-6">
             <p className="font-sans text-xs uppercase tracking-wider text-primary/70 mb-2 font-medium">Select Size</p>
-            <div className="flex gap-2 justify-start flex-wrap">
+            <div className="flex gap-2 justify-center md:justify-start flex-wrap">
               {selectedProduct.sizes.map((size) => (
                 <button
                   key={size}
@@ -120,7 +120,7 @@ const ProductDetail = () => {
         )}
 
         {/* quantity feature */}
-        <div className="mt-6 flex items-center gap-4">
+        <div className="mt-6 flex items-center justify-center md:justify-start gap-4">
           <p className="font-sans text-xs uppercase tracking-wider text-primary/70 font-medium">Quantity</p>
           <div className="flex items-center border border-primary/20 rounded-xs">
             <button

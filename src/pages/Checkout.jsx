@@ -17,14 +17,14 @@ const Checkout = () => {
         phone: ''
     })
 
-    const totalPrice = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0)
+    const totalPrice = items.reduce((sum, item) => sum + (item?.product?.price || 0) * (item?.quantity || 1), 0);
 
     const handleChange = (e) => {
         setShippingInfo({
             ...shippingInfo,
             [e.target.name]: e.target.value
-        })
-    }
+        });
+    };
 
     const handlePhoneChange = (e) => {
         const numericValue = e.target.value.replace(/[^0-9+]/g, '');
@@ -35,13 +35,15 @@ const Checkout = () => {
     e.preventDefault();
 
     const orderData = {
-      items: items.map((item) => ({
-        product: item.product._id,
-        name: item.product.name,
-        size: item.size,
-        quantity: item.quantity,
-        priceAtPurchase: item.product.price,
-      })),
+      items: items
+        .filter((item) => item?.product)
+        .map((item) => ({
+          product: item.product._id,
+          name: item.product.name,
+          size: item.size,
+          quantity: item.quantity,
+          priceAtPurchase: item.product.price,
+        })),
       shippingInfo,
     };
 

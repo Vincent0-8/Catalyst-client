@@ -14,8 +14,12 @@ const getCartKey = () => {
 };
 
 const loadCartFromStorage = () => {
-  const stored = localStorage.getItem(getCartKey());
-  return stored ? JSON.parse(stored) : [];
+  try {
+    const stored = localStorage.getItem(getCartKey());
+    return stored ? JSON.parse(stored).filter((item) => item && item.product && item.product._id) : [];
+  } catch {
+    return [];
+  }
 };
 
 const saveCart = (items) => {

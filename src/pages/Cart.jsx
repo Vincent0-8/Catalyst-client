@@ -7,7 +7,7 @@ const Cart = () => {
     const { items } = useSelector((state) => state.cart);
     const dispatch = useDispatch();
 
-    const totalPrice = items.reduce((sum,item) => sum + item.product.price * item.quantity, 0)
+    const totalPrice = items.reduce((sum, item) => sum + (item?.product?.price || 0) * (item?.quantity || 1), 0);
 
     const handleQuantityChange = (productId, size, currentQty, newQty, stock) => {
         if (newQty < 1) return;

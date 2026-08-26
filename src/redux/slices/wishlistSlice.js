@@ -14,8 +14,12 @@ const getWishlistKey = () => {
 };
 
 const loadWishlistFromStorage = () => {
-  const stored = localStorage.getItem(getWishlistKey());
-  return stored ? JSON.parse(stored) : [];
+  try {
+    const stored = localStorage.getItem(getWishlistKey());
+    return stored ? JSON.parse(stored).filter((item) => item && item._id) : [];
+  } catch {
+    return [];
+  }
 };
 
 const saveWishlist = (items) => {

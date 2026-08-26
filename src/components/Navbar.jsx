@@ -20,8 +20,8 @@ const Navbar = () => {
     setShowMobileMenu(false);
   };
 
-  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+  const totalQuantity = cartItems.reduce((sum, item) => sum + (item?.quantity || 1), 0);
+  const totalPrice = cartItems.reduce((sum, item) => sum + (item?.product?.price || 0) * (item?.quantity || 1), 0);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -46,6 +46,17 @@ const Navbar = () => {
       return;
     }
     setShowCart(!showCart);
+  };
+
+  const handleMobileCartClick = () => {
+    if (!user) {
+      toast.error('Please login to unlock Cart');
+      navigate('/login');
+      setShowMobileMenu(false);
+      return;
+    }
+    navigate('/cart');
+    setShowMobileMenu(false);
   };
 
   const handleWishlistClick = (e) => {
@@ -207,8 +218,8 @@ const Navbar = () => {
               Wishlist ({wishlistItems.length})
             </button>
             <button
-              onClick={handleCartClick}
-              className="text-xs uppercase tracking-wider hover:text-accent transition-colors cursor-pointer"
+              onClick={handleMobileCartClick}
+              className="text-xs uppercase tracking-wider hover:text-accent transition-colors cursor-pointer text-left"
             >
               Cart ({totalQuantity})
             </button>

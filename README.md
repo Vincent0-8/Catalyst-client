@@ -1,4 +1,4 @@
-# Catalyst — Modern E-Commerce Frontend
+# Catalyst — Modern E-Commerce Frontend 
 
 > **Tech Stack:** `React 19` • `Redux Toolkit` • `Tailwind CSS v4` • `Axios` • `Lodash` • `React Toastify`  
 > **Backend API Repository:** [Catalyst-server](https://github.com/Vincent0-8/Catalyst-server)

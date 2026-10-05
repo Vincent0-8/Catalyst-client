@@ -3,7 +3,7 @@
 > **Tech Stack:** `React 19` • `Redux Toolkit` • `Tailwind CSS v4` • `Axios` • `Lodash` • `React Toastify`  
 > **Backend API Repository:** [Catalyst-server](https://github.com/Vincent0-8/Catalyst-server)
 
-Fullstack E-Commerce Client Application built with **React 19**, **Redux Toolkit**, and **Tailwind CSS v4**. Paired with the RESTful API backend at [Catalyst-server](https://github.com/Vincent0-8/Catalyst-server). Inspired by high-end minimalist boutique marketplaces ([Garmentory](https://www.garmentory.com/)).
+Fullstack E-Commerce Client Application built with **React 19**, **Redux Toolkit**, and **Tailwind CSS v4**. Paired with the RESTful API backend at [Catalyst-server](https://github.com/Vincent0-8/Catalyst-server). Inspired by high-end minimalist boutique marketplaces ([Garmentory](https://www.garmentory.com/)). 
 
 ---
 
